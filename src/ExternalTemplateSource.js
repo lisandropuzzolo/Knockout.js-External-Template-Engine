@@ -45,6 +45,13 @@ ko.utils.extend(ExternalTemplateSource.prototype, {
             self.data("precompiled",null);
             self.template(tmpl);
             self.loaded = true;
+            
+            if( ko.isWriteableObservable( self.options.loaded ) ) {
+				setTimeout(function(){
+					self.options.loaded(true);
+				}, 0);
+			}
+            
         });
     }
 });
